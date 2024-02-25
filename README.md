@@ -2,6 +2,8 @@
 
 The "Weather App" is a web application developed to provide users with real-time weather information for various cities. It utilizes an external API to fetch weather data and displays it in a user-friendly interface.
 
+# Live Link : https://carpentrycoder.github.io/Sutar.ka.Weather.app/
+
 ## Preview
 
 ![Weather App Preview](weather_app_preview.png)
