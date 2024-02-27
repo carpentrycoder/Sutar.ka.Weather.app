@@ -6,7 +6,7 @@ The "Weather App" is a web application developed to provide users with real-time
 
 ## Preview
 
-![Weather App Preview](weather_app_preview.png)
+![Weather App Preview](preview.png)
 
 ## Key Features
 
