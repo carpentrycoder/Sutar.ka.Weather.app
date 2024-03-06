@@ -3,7 +3,7 @@ async function fetchData(city) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'd40a2b7d6cmsh6083b6f39dfd065p1f0472jsn64091a089a98',
+            'X-RapidAPI-Key': 'ccc202d355mshc70e89aa338ad31p133adcjsn51c654e21dee',
             'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
         }
     };
@@ -57,7 +57,7 @@ async function fetchWeatherData(common_city) {
     const options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'd40a2b7d6cmsh6083b6f39dfd065p1f0472jsn64091a089a98',
+            'X-RapidAPI-Key': 'ccc202d355mshc70e89aa338ad31p133adcjsn51c654e21dee',
             'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
         }
     };
