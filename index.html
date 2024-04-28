@@ -12,9 +12,50 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom styles for responsiveness */
+    @media (max-width: 768px) {
+      .navbar .navbar-collapse {
+        background-color: #f8f9fa !important;
+      }
+
+      .navbar .form-inline {
+        display: block;
+      }
+
+      .navbar .form-inline input {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .navbar .form-inline button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/carpentrycoder" target="_blank">About Me</a>
+      </li>
+    </ul>
+    <div class="input-group">
+      <input class="form-control mr-sm-2" type="text" id="cityInput" placeholder="Search" aria-label="Search">
+      <div class="input-group-append">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit">Search</button>
+      </div>
+    </div>
+    <button class="btn btn-outline-success d-lg-none my-2 ml-2" type="button" id="toggleSearchBar" data-bs-toggle="collapse"
+      data-bs-target="#searchCollapse">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+  
+
   <nav class="navbar navbar-expand-lg bg-custom-color">
     <div class="container-fluid">
       <a class="navbar-brand">Sutar.ka.Weather.app</a>
@@ -24,9 +65,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="d-flex justify-content-end">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="text" id="cityInput" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit" id="submit">Search</button>
+          <form class="form-inline my-2 my-lg-0 mr-lg-2">
+            <input class="form-control mr-sm-2" type="text" id="cityInput" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit">Search</button>
           </form>
         </div>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
