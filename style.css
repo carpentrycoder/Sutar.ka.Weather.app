@@ -1,208 +1,186 @@
-/* Common Styles */
-.bg-custom-color {
-    background-color: #343534;
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    box-sizing: border-box;
 }
 
-.navbar-brand {
-    font-size: 30px;
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #021a2c;
 }
 
-.d-flex {
-    margin-right: auto;
+.container{
+    position: relative;
+    width: 400px;
+    height: 105px;
+    background-color: #ffff;
+    padding: 28px 32px;
+    overflow: hidden;
+    border-radius: 18px;
+    font-family: 'Roboto', sans-serif;
+    transition: 0.6s ease-out;
 }
 
-.mb-4 {
-    margin-right: 20px;
-    margin-left: 20px;
+.search-box{
+    width: 100%;
+    height: min-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.tagline {
+.search-box input{
+    color: #06283D;
+    width: 80%;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding-left: 42px;
+}
+
+.search-box input::placeholder{
+    font-size: 20px;
+    font-weight: 500;
+    color: #06283D;
+    text-transform: capitalize;
+}
+
+.search-box button{
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    color: #06283D;
+    background: #dff6ff;
+    border-radius: 50%;
+    font-size: 22px;
+    transition: 0.4s ease;
+}
+
+.search-box button:hover{
+    color: #fff;
+    background: #06283D;
+}
+
+.search-box i{
+    position: absolute;
+    color: #06283D;
+    font-size: 28px;
+}
+
+.weather-box{
     text-align: center;
 }
 
-.table-responsive {
-    display: block;
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+.weather-box img{
+    width: 60%;
+    margin-top: 30px;
 }
 
-.border-primary {
-    border-color: #000000 !important;
-}
-
-.material-symbols-outlined {
-    font-family: 'Material Symbols Outlined';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 79px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-}
-
-.map-container {
+.weather-box .temperature{
     position: relative;
-    overflow: hidden;
-    padding-top: 56.25%; /* Aspect ratio 16:9 */
+    color: #06283D;
+    font-size: 4rem;
+    font-weight: 800;
+    margin-top: 30px;
+    margin-left: -16px;
 }
 
-.map-container iframe {
+.weather-box .temperature span{
     position: absolute;
-    top: 0;
-    left: 0;
+    margin-left: 4px;
+    font-size: 1.5rem;
+}
+
+.weather-box .description{
+    color: #06283D;
+    font-size: 22px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.weather-details{
     width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
 }
 
-.table {
+.weather-details .humidity, .weather-details .wind{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 100px;
+}
+
+.weather-details .humidity{
+    padding-left: 20px;
+    justify-content: flex-start;
+}
+
+.weather-details .wind{
+    padding-right: 20px;
+    justify-content: flex-end;
+}
+
+.weather-details i{
+    color: #06283D;
+    font-size: 26px;
+    margin-right: 10px;
+    margin-top: -3px;
+}
+
+.weather-details span{
+    color: #06283D;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.weather-details p{
+    color: #06283D;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.error{
     width: 100%;
-    margin-bottom: 1rem;
-    color: #0353a3;
+    text-align: center;
+    margin-top: 50px;
+    scale: 0;
+    opacity: 0;
+    display: none;
 }
 
-table {
-    display: table;
-    border-collapse: separate;
-    box-sizing: border-box;
-    text-indent: initial;
-    border-spacing: 2px;
-    border-color: rgb(0, 0, 0);
+.error img{
+    width: 70%;
 }
 
-.navbar .justify-content-end {
-    margin-left: auto;
+.error p{
+    color: #06283D;
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 12px;
 }
 
-/* Dark Mode */
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
+.weather-box, .weather-details{
+    scale: 0;
+    opacity: 0;
 }
 
-.navbar.dark-mode {
-    background-color: #1f1f1f;
+.fadeIn{
+    animation: 0.5s fadeIn forwards;
+    animation-delay: 0.5s;
 }
 
-.navbar-brand.dark-mode {
-    color: aliceblue;
-}
-
-.table.dark-mode {
-    color: #ffffff;
-}
-
-/* Light Mode */
-body.light-mode {
-    background-color: #ffffff;
-    color: #000000;
-}
-
-.navbar.light-mode {
-    background-color: #f8f9fa;
-}
-
-.navbar-brand.light-mode {
-    color: #343534;
-}
-
-.table.light-mode {
-    color: #000000;
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 1024px) {
-    .navbar .navbar-collapse {
-        background-color: #f8f9fa !important;
-    }
-
-    .navbar .form-inline {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-    }
-
-    .navbar .form-inline input {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-
-    .navbar .form-inline button {
-        width: 100%;
-    }
-
-    .navbar-brand {
-        font-size: 24px;
-    }
-
-    .material-symbols-outlined {
-        font-size: 60px;
-    }
-
-    .table-responsive {
-        padding: 0 10px;
-    }
-
-    .mb-4 {
-        margin-right: 10px;
-        margin-left: 10px;
+@keyframes fadeIn{
+    to {
+        scale: 1;
+        opacity: 1;
     }
 }
 
-@media (max-width: 768px) {
-    .navbar .navbar-collapse {
-        background-color: #f8f9fa !important;
-    }
 
-    .navbar .form-inline {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-    }
-
-    .navbar .form-inline input {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-
-    .navbar .form-inline button {
-        width: 100%;
-    }
-
-    .navbar-brand {
-        font-size: 20px;
-    }
-
-    .material-symbols-outlined {
-        font-size: 50px;
-    }
-
-    .table-responsive {
-        padding: 0 5px;
-    }
-
-    .mb-4 {
-        margin-right: 5px;
-        margin-left: 5px;
-    }
-}
-
-/* Custom color for navbar toggle button */
-.navbar-toggler {
-    border-color: #f8f9fa; 
-    /* Change the border color */
-    background-color: #000000;
-}
-
-/* Custom color for navbar toggle icon */
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28 248, 249, 250, 1 %29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}

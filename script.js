@@ -1,95 +1,81 @@
-async function fetchData(city) {
-    const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${city}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'ccc202d355mshc70e89aa338ad31p133adcjsn51c654e21dee',
-            'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-        }
-    };
+const container = document.querySelector('.container');
+const search = document.querySelector('.search-box button');
+const weatherBox = document.querySelector('.weather-box');
+const weatherDetails = document.querySelector('.weather-details');
+const error404 = document.querySelector('.error');
 
-    try {
+search.addEventListener('click', () => {
 
-        document.getElementById("cityname").innerHTML = city
-        const response = await fetch(url, options);
-        const result = await response.json(); // Assuming the response is JSON
-        console.log(result);
+    const APIKey = '97fa3c59445d658210510036f058b5b4';
+    const city = document.querySelector('.search-box input').value;
 
-        // Assuming the response has properties like cloud_pct, temp, etc.
-        const cloud_pct = result.cloud_pct;
-        const temp = result.temp;
-        const feels_like = result.feels_like;
-        const humidity = result.humidity;
-        const min_temp = result.min_temp;
-        const max_temp = result.max_temp;
-        const wind_speed = result.wind_speed;
-        const wind_degrees = result.wind_degrees;
-        const sunrise = result.sunrise;
-        const sunset = result.sunset;
+    if (city === '')
+        return;
 
-        document.getElementById("cloud_pct").innerHTML = cloud_pct;
-        document.getElementById("temp").innerHTML = temp;
-        document.getElementById("feels_like").innerHTML = feels_like;
-        document.getElementById("humidity").innerHTML = humidity;
-        document.getElementById("min_temp").innerHTML = min_temp;
-        document.getElementById("max_temp").innerHTML = max_temp;
-        document.getElementById("wind_speed").innerHTML = wind_speed;
-        document.getElementById("wind_degrees").innerHTML = wind_degrees;
-        document.getElementById("sunrise").innerHTML = sunrise;
-        document.getElementById("sunset").innerHTML = sunset;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+        .then(response => response.json())
+        .then(json => {
 
-        
+            if (json.cod === '404') {
+                container.style.height = '400px';
+                weatherBox.style.display = 'none';
+                weatherDetails.style.display = 'none';
+                error404.style.display = 'block';
+                error404.classList.add('fadeIn');
+                return;
+            }
 
-    } catch (error) {
-        console.error(error);
-    }
-}
+            error404.style.display = 'none';
+            error404.classList.remove('fadeIn');
 
-// Call the async function to start fetching data
-document.getElementById("submit").addEventListener("click", function(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
-    const city = document.getElementById("cityInput").value;
-    fetchData(city);
+            const image = document.querySelector('.weather-box img');
+            const temperature = document.querySelector('.weather-box .temperature');
+            const description = document.querySelector('.weather-box .description');
+            const humidity = document.querySelector('.weather-details .humidity span');
+            const wind = document.querySelector('.weather-details .wind span');
+
+            switch (json.weather[0].main) {
+                case 'Clear':
+                    image.src = 'images/clear.png';
+                    break;
+
+                case 'Rain':
+                    image.src = 'images/rain.png';
+                    break;
+
+                case 'Snow':
+                    image.src = 'images/snow.png';
+                    break;
+
+                case 'Clouds':
+                    image.src = 'images/cloud.png';
+                    break;
+
+                case 'Haze':
+                    image.src = 'images/mist.png';
+                    break;
+                
+                case 'Drizzle':
+                    image.src = 'images/drizzle.png'
+                    break;
+                    
+                default:
+                    image.src = '';
+            }
+
+            temperature.innerHTML = `${parseInt(json.main.temp)}<span>°C</span>`;
+            description.innerHTML = `${json.weather[0].description}`;
+            humidity.innerHTML = `${json.main.humidity}%`;
+            wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+
+            weatherBox.style.display = '';
+            weatherDetails.style.display = '';
+            weatherBox.classList.add('fadeIn');
+            weatherDetails.classList.add('fadeIn');
+            container.style.height = '560px';
+
+
+        });
+
+
 });
-
-async function fetchWeatherData(common_city) {
-    const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=${common_city}`;
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'ccc202d355mshc70e89aa338ad31p133adcjsn51c654e21dee',
-            'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
-        }
-    };
-
-    try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        // Update table cells with fetched weather data
-        document.getElementById(`cloud_pct_${common_city}`).innerHTML = result.cloud_pct;
-        document.getElementById(`temp_${common_city}`).innerHTML = result.temp;
-        document.getElementById(`feels_like_${common_city}`).innerHTML = result.feels_like;
-        document.getElementById(`humidity_${common_city}`).innerHTML = result.humidity;
-        document.getElementById(`min_temp_${common_city}`).innerHTML = result.min_temp;
-        document.getElementById(`max_temp_${common_city}`).innerHTML = result.max_temp;
-        document.getElementById(`wind_speed_${common_city}`).innerHTML = result.wind_speed;
-        document.getElementById(`wind_degrees_${common_city}`).innerHTML = result.wind_degrees;
-        document.getElementById(`sunrise_${common_city}`).innerHTML = result.sunrise;
-        document.getElementById(`sunset_${common_city}`).innerHTML = result.sunset;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// Fetch weather data for each city when the page loads
-document.addEventListener("DOMContentLoaded", function() {
-    fetchWeatherData("Kolkata");
-    fetchWeatherData("Chennai");
-    fetchWeatherData("Hyderabad");
-    fetchWeatherData("Pune");
-    fetchWeatherData("Jaipur");
-    fetchWeatherData("Ahmedabad");
-});
-
-
-
